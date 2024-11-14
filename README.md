@@ -38,7 +38,7 @@
 ## Изображения
 Отображаются как обычная картинка на веб-сайте.
 
-image/png | image/jpg | image/jpeg | image/gif | image/vnd.microsoft.icon | image/webp | image/tiff | image/bmp
+`image/png` | `image/jpg` | `image/jpeg` | `image/gif` | `image/vnd.microsoft.icon` | `image/webp` | `image/tiff` | `image/bmp`
 
 * PNG
 * JPG/JPEG
@@ -47,13 +47,21 @@ image/png | image/jpg | image/jpeg | image/gif | image/vnd.microsoft.icon | imag
 * WEBP
 * TIFF
 * BMP
+
 ## Видео
 Отображается как обычное видео на веб-сайте.
+
+`video/mpeg` | `video/mp4` | `video/webm`
+
 * MP4 (видео) [MPEG]
 * WEBM
 * MPEG
+
 ## Аудио
 Отображается как обычное аудио на веб-сайте.
+
+`audio/mpeg` | `audio/x-hx-aac-adts` | `audio/mp4` | `audio/vnd.wave` | `audio/x-wav` | `audio/ogg` | `audio/opus` | `audio/x-m4a` | `audio/m4a`
+
 * MP3
 * WAV
 * OGG
@@ -61,21 +69,28 @@ image/png | image/jpg | image/jpeg | image/gif | image/vnd.microsoft.icon | imag
 * MP4 (аудио) [MPEG]
 * M4A
 * MPEG
+
 ## Архивы
 >[!WARNING]
 >Для работы с ZIP/JAR-архивами требуется PHP-расширение [ZipArchive](https://www.php.net/manual/ru/book.zip.php).
 
+`application/zip`
+
 Содержимое архива отображается в виде списка на отдельной странице ([zip.php](zip.php)). Поддерживается распаковка.
 * ZIP
 * JAR
+
 ## Шрифты
 Используя CSS-свойство `@font-face`, загружает шрифт и называет его «Test Font». Далее этот «Test Font» используется в абзацах в месте, где просматривается содержимое файла. В этих абзацах написано 2 [панграммы](https://ru.wikipedia.org/wiki/Панграмма): на русском («Съешь ещё этих мягких французских булок, да выпей же чаю») и на английском («The quick brown fox jumps over the lazy dog»); под ними находятся английский и русский алфавит, написаный большими (прописными) и маленькими (строчными) буквами: ABC/abc, АБВ/абв; затем идут цифры от 1 до 9 с 0 в конце: «1234567890»; в конце располагаются специальные символы (@, $, ?, _ и т. д.). Ниже расположено поле ввода, позволяющее тестировать другие символы, например, если шрифт содержит эмодзи, которые не отображаются в предпросмотре выше.
+
+`font/sfnt` | `font/truetype` | `application/vnd.ms-fontobject` | `font/woff` | `font/opentype` | `application/font-woff` | `font/woff2` | `font/collection`
 
 * TTF
 * EOT
 * OTF
 * WOFF
 * WOFF2
+
 ## Текстовые файлы
 Отображается как неформатированный текст (в HTML-теге `<pre>`) на светло-сером фоне.
 * TXT
@@ -83,8 +98,10 @@ image/png | image/jpg | image/jpeg | image/gif | image/vnd.microsoft.icon | imag
 * JS [JavaScript]
 * JSON
 * <без расширения>
+
 ## XML
 Отображаются в iframe (HTML-тег `<iframe>`).
+
 ## Другое
 * Папки
 
