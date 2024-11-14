@@ -80,7 +80,7 @@ if ($mime == 'image/png' || $mime == 'image/jpg' || $mime == 'image/jpeg' || $mi
 } else if ($mime == 'text/html' || $mime == 'image/svg+xml') {
  echo '  <iframe src="/file_view.php?f='.urlencode($path).'" width="90%" height="400px">Тег <code>iframe</code> не поддерживается в этом браузере.</iframe>
 ';
-} else if ($mime == 'font/sfnt' || $mime == 'font/truetype' || $$mime == 'application/vnd.ms-fontobject' || $mime == 'font/woff' || $mime == 'font/opentype' || $mime == 'application/font-woff' || $mime == 'font/woff' || $mime == 'font/woff2' || $mime == 'font/collection') {
+} else if ($mime == 'font/sfnt' || $mime == 'font/truetype' || $mime == 'application/vnd.ms-fontobject' || $mime == 'font/opentype' || $mime == 'application/font-woff' || $mime == 'font/woff' || $mime == 'font/woff2' || $mime == 'font/collection') {
  echo '  <style type="text/css">
 @font-face {
  font-family: \'Test Font\';
