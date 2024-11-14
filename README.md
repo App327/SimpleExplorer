@@ -93,6 +93,9 @@
 
 ## Текстовые файлы
 Отображается как неформатированный текст (в HTML-теге `<pre>`) на светло-сером фоне.
+
+`text/plain` | `text/css` | `text/javascript` | `application/json` | `x-empty`
+
 * TXT
 * CSS
 * JS [JavaScript]
@@ -101,6 +104,11 @@
 
 ## XML
 Отображаются в iframe (HTML-тег `<iframe>`).
+
+`text/html` | `image/svg+xml`
+
+* HTML
+* SVG
 
 ## Другое
 * Папки
