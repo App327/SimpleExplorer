@@ -94,7 +94,7 @@
 ## Текстовые файлы
 Отображается как неформатированный текст (в HTML-теге `<pre>`) на светло-сером фоне.
 
-`text/plain` | `text/css` | `text/javascript` | `application/json` | `x-empty`
+`text/plain` | `text/css` | `text/javascript` | `application/json` | `application/x-empty`
 
 * TXT
 * CSS
