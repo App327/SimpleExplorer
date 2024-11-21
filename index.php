@@ -43,7 +43,7 @@ echo '<!DOCTYPE html>
 <html lang="ru" dir="ltr">
  <head>
   <meta charset="utf-8" />
-  <title>SimpleExplorer v1.0</title>
+  <title>SimpleExplorer v1.1</title>
   <meta name="viewport" content="width=device-width,intitial-scale=1.0" />
   <style type="text/css">
 body {
@@ -60,25 +60,45 @@ a:active {
 a:hover {
  text-decoration: underline;
 }
+
+.f-info {
+ user-select: none;
+}
+
+.f-info:hover {
+ color: dodgerblue;
+}
+
+.f-info-i {
+ display: none;
+}
+
+.f-info-i:hover {
+ display: block;
+}
+
+.f-info:hover + .f-info-i {
+ display: block;
+}
   </style>
  </head>
  <body>
 '.$notif.'
-  <h2 style="color: navy; font-weight: 400;">SimpleExplorer <span style="color: dodgerblue">v1.0</span></h2>
-  <p>[<a href="https://github.com/App327/SimpleExplorer">GitHub</a> • <a href="https://github.com/App327/SimpleExplorer/issues/new?title=Сообщение+об+ошибке+%5Bv1.0%5D">Сообщить об ошибке</a>]</p>
+  <h2 style="color: navy; font-weight: 400;">SimpleExplorer <span style="color: dodgerblue">v1.1</span></h2>
+  <p>[<a href="https://github.com/App327/SimpleExplorer">GitHub</a> • <a href="https://github.com/App327/SimpleExplorer/issues/new?title=Сообщение+об+ошибке+%5Bv1.1%5D">Сообщить об ошибке</a>]</p>
   <hr noshade color="silver" />
   <form action="/" style="display: flex; align-items: center;">
    <p style="width: 10px;"><a href="/?path='.urlencode(dirname($path)).'">↑</a></p>
    <input id="path" style="width: 90%" type="text" name="path" value="' . $path . '" placeholder="Путь" />
    <input type="submit" value="›" />
   </form>
-  <br />
-  <div style="border: 2px solid orange">
+  <p class="f-info">[ ⓘ ]</p>
+  <div style="border: 2px solid orange;" class="f-info-i">
    <p><b>[D]</b> — папка</p>
    <p><b>[F]</b> — файл</p>
    <p><b>[U]</b> — тип неизвестен</p>
   </div>
-  <p><b>Занято:</b> ' . convert_bytes(disk_free_space($path)) . ' / ' . convert_bytes(disk_total_space($path)) . '</p>
+  <p><b>Занято:</b> ' . convert_bytes(disk_total_space($path) - disk_free_space($path)) . ' / ' . convert_bytes(disk_total_space($path)) . ' (<b>свободно:</b> ' . convert_bytes(disk_free_space($path)) . ')</p>
   <br />
   <p>[<a href="/newfolder.php?p='.$path.'">+ Новая папка</a>]</p>
 ';
