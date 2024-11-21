@@ -16,6 +16,7 @@ $mime = mime_content_type($path);
 
 header('HTTP/1.1 200 OK');
 header('Content-Type: '.$mime);
+header('Content-Disposition: inline; filename="' . basename($path) . '"');
 
 readfile($path);
 

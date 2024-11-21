@@ -32,7 +32,7 @@ echo '<!DOCTYPE html>
 <html lang="ru" dir="ltr">
  <head>
   <meta charset="utf-8" />
-  <title>Выбор папки — Распаковка ZIP-архива | SimpleExplorer v1.0</title>
+  <title>Выбор папки — Распаковка ZIP-архива | SimpleExplorer v1.1</title>
   <meta name="viewport" content="width=device-width,intitial-scale=1.0" />
   <style type="text/css">
 body {
@@ -52,8 +52,8 @@ a:hover {
   </style>
  </head>
  <body>
-  <h2 style="color: navy; font-weight: 400;">SimpleExplorer <span style="color: dodgerblue">v1.0</span></h2>
-  <p>[<a href="https://github.com/App327/SimpleExplorer">GitHub</a> • <a href="https://github.com/App327/SimpleExplorer/issues/new?title=Сообщение+об+ошибке+%5Bv1.0%5D">Сообщить об ошибке</a>]</p>
+  <h2 style="color: navy; font-weight: 400;">SimpleExplorer <span style="color: dodgerblue">v1.1</span></h2>
+  <p>[<a href="https://github.com/App327/SimpleExplorer">GitHub</a> • <a href="https://github.com/App327/SimpleExplorer/issues/new?title=Сообщение+об+ошибке+%5Bv1.1%5D">Сообщить об ошибке</a>]</p>
   <hr noshade color="silver" />
   <p><a href="/zip.php?p='.urlencode($path).'">‹ Назад</a></p>
   <p>'.$path.'</p>
@@ -61,9 +61,9 @@ a:hover {
   <form action="/unzip.php">
    <p>Введите в поле ниже путь к папке для распаковки.</p>
    <input type="hidden" name="f" value="'.$path.'" />
-   <input type="text" name="ep" placeholder="Папка для распаковки" title="Папка для распаковки" value="'.dirname($path).'" required style="width: 95%;" />
+   <input type="text" name="ep" placeholder="Папка для распаковки" title="Папка для распаковки" value="'.dirname($path).'" required style="width: calc(95% - 20px); padding: 10px;" />
    <br /><br />
-   <input type="submit" value="Распаковать" />
+   <input type="submit" value="Распаковать" style="padding: 10px;" />
   </form>
 
  </body>
