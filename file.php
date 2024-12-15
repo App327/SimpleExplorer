@@ -66,7 +66,7 @@ $mime = mime_content_type($path);
 if (filesize($path) == '0') {
  echo '<p>Файл пуст.</p>
 ';
-} else if ($mime == 'image/png' || $mime == 'image/jpg' || $mime == 'image/jpeg' || $mime == 'image/gif' || $mime == 'image/vnd.microsoft.icon' || $mime == 'image/webp' || $mime == 'image/tiff' || $mime == 'image/bmp') {
+} else if ($mime == 'image/png' || $mime == 'image/jpg' || $mime == 'image/jpeg' || $mime == 'image/gif' || $mime == 'image/vnd.microsoft.icon' || $mime == 'image/webp' || $mime == 'image/tiff' || $mime == 'image/bmp' || $mime == 'image/avif' || $mime == 'image/x-avif' || $mime == 'image/tiff' || $mime == 'image/x-tiff') {
  echo '  <img src="/file_view.php?f='.urlencode($path).'" alt="Файл" width="90%" />
 ';
 } else if ($mime == 'video/mpeg' || $mime == 'video/mp4' || $mime == 'video/webm' || $mime == 'video/quicktime' || $mime == 'video/x-quicktime' || $mime == 'video/x-msvideo' || $mime == 'video/msvideo') {
@@ -161,8 +161,10 @@ echo '
   <hr noshade color="lightgrey" />
   <h4>О файле</h4>
   <p><b>Изменено:</b> '.date('d/m/Y (нед. W), H:i:s', filemtime($path)).'</p>
+  <p><b><a href="https://www.php.net/manual/ru/function.fileatime.php#refsect1-function.fileatime-notes">Последний доступ</a>:</b> '.date('d/m/Y (нед. W), H:i:s', fileatime($path)).'</p>
   <p><b>MIME-тип:</b> <code>'.$mime.'</code></p>
   <p><b>Размер:</b> '.convert_bytes(filesize($path)).'</p>
+  <p><b>Права доступа:</b> '.substr(sprintf('%o', fileperms($path)), -4).' ('.fileperms($path).')</p>
  </body>
 </html>';
 
