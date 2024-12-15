@@ -84,7 +84,7 @@
 >Для работы с ZIP/JAR-архивами требуется PHP-расширение [ZipArchive](https://www.php.net/manual/ru/book.zip.php).
 
 >[!WARNING]
->Для работы с RAR-архивами требуется PHP-расширение [RapArchive](https://www.php.net/manual/ru/book.rar.php).
+>Для работы с RAR-архивами требуется PHP-расширение [RarArchive](https://www.php.net/manual/ru/book.rar.php).
 
 `application/zip` | `application/java-archive` | `application/vnd.rar` | `application/x-rar` | `application/rar`
 
