@@ -32,7 +32,7 @@ echo '<!DOCTYPE html>
 <html lang="ru" dir="ltr">
  <head>
   <meta charset="utf-8" />
-  <title>Файл | SimpleExplorer v1.1</title>
+  <title>Файл | SimpleExplorer v1.2</title>
   <meta name="viewport" content="width=device-width,intitial-scale=1.0" />
   <style type="text/css">
 body {
@@ -52,8 +52,8 @@ a:hover {
   </style>
  </head>
  <body>
-  <h2 style="color: navy; font-weight: 400;">SimpleExplorer <span style="color: dodgerblue">v1.1</span></h2>
-  <p>[<a href="https://github.com/App327/SimpleExplorer">GitHub</a> • <a href="https://github.com/App327/SimpleExplorer/issues/new?title=Сообщение+об+ошибке+%5Bv1.1%5D">Сообщить об ошибке</a>]</p>
+  <h2 style="color: navy; font-weight: 400;">SimpleExplorer <span style="color: dodgerblue">v1.2</span></h2>
+  <p>[<a href="https://github.com/App327/SimpleExplorer">GitHub</a> • <a href="https://github.com/App327/SimpleExplorer/issues/new?title=Сообщение+об+ошибке+%5Bv1.2%5D">Сообщить об ошибке</a>]</p>
   <hr noshade color="silver" />
   <p><a href="/?path='.urlencode(dirname($path)).'">‹ Назад</a></p>
   <p>'.$path.'</p>
@@ -66,16 +66,20 @@ $mime = mime_content_type($path);
 if (filesize($path) == '0') {
  echo '<p>Файл пуст.</p>
 ';
-} else if ($mime == 'image/png' || $mime == 'image/jpg' || $mime == 'image/jpeg' || $mime == 'image/gif' || $mime == 'image/vnd.microsoft.icon' || $mime == 'image/webp' || $mime == 'image/tiff' || $mime == 'image/bmp') {
+} else if ($mime == 'image/png' || $mime == 'image/jpg' || $mime == 'image/jpeg' || $mime == 'image/gif' || $mime == 'image/vnd.microsoft.icon' || $mime == 'image/webp' || $mime == 'image/tiff' || $mime == 'image/bmp' || $mime == 'image/avif' || $mime == 'image/x-avif' || $mime == 'image/tiff' || $mime == 'image/x-tiff') {
  echo '  <img src="/file_view.php?f='.urlencode($path).'" alt="Файл" width="90%" />
 ';
-} else if ($mime == 'video/mpeg' || $mime == 'video/mp4' || $mime == 'video/webm') {
+} else if ($mime == 'video/mpeg' || $mime == 'video/mp4' || $mime == 'video/webm' || $mime == 'video/quicktime' || $mime == 'video/x-quicktime' || $mime == 'video/x-msvideo' || $mime == 'video/msvideo') {
  echo '  <video src="/file_view.php?f='.urlencode($path).'" width="90%" controls>Воспроизведение видео не поддерживается в этом браузере.</video>
 ';
 } else if ($mime == 'audio/mpeg' || $mime == 'audio/x-hx-aac-adts' || $mime == 'audio/mp4' || $mime == 'audio/vnd.wave' || $mime == 'audio/x-wav' || $mime == 'audio/ogg' || $mime == 'audio/opus' || $mime == 'audio/x-m4a' || $mime == 'audio/m4a') {
  echo '  <audio src="/file_view.php?f='.urlencode($path).'" width="90%" controls>Воспроизведение аудио не поддерживается в этом браузере.</audio>
 ';
 } else if ($mime == 'text/plain' || $mime == 'application/xml' || $mime == 'text/xml' || $mime == 'text/x-msdos-batch' || $mime == 'text/msdos-batch' || $mime == 'application/bat' || $mime == 'application/x-bat' || $mime == 'text/css' || $mime == 'text/javascript' || $mime == 'application/json' || $mime == 'text/x-php' || $mime == 'text/php' || $mime == 'application/x-httpd-php' || $mime == 'application/x-empty') {
+ if ($mime == 'text/plain') {
+  echo '  <p>[<a href="/file_edit.php?f='.urlencode($path).'">Изменить</a>]</p>
+';
+ }
  $file_cnt = '';
  $fgc = file_get_contents($path);
  $file_cnt = str_replace('<', '&lt;', $fgc);
@@ -139,13 +143,13 @@ inp.onblur = changeFTvalue;
 inp.onchange = changeFTvalue;
   </script>
 ';
-} else if ($mime == 'application/zip' || $mime == 'application/java-archive') {
+} else if ($mime == 'application/zip' || $mime == 'application/java-archive' || $mime == 'application/vnd.rar' || $mime == 'application/x-rar' || $mime == 'application/rar') {
  echo '  <p><a href="/zip.php?p='.urlencode($path).'">Открыть содержимое архива</a></p>
 ';
 } else if ($mime == 'directory') {
  echo '  <p><a href="/?path='.urlencode($path).'">Посмотреть содержимое папки</a></p>
 ';
-} else if ($mime == 'application/vnd.rar' || $mime == 'application/x-rar' || $mime == 'text/csv' || $mime == 'text/tab-separated-values' || $mime == 'text/rtf' || $mime == 'application/rtf' || $mime == 'application/pdf' || $mime == 'application/x-pdf' || $mime == 'application/x-bzpdf' || $mime == 'application/x-gzpdf') {
+} else if ($mime == 'text/csv' || $mime == 'text/tab-separated-values' || $mime == 'text/rtf' || $mime == 'application/rtf' || $mime == 'application/pdf' || $mime == 'application/x-pdf' || $mime == 'application/x-bzpdf' || $mime == 'application/x-gzpdf') {
  echo '  <p>Этот тип файла пока не поддерживается SimpleExplorer, но его поддержка будет добавлена в ближайших обновлениях SimpleExplorer. Следите за обновлениями!</p>
 ';
 } else {
@@ -157,8 +161,10 @@ echo '
   <hr noshade color="lightgrey" />
   <h4>О файле</h4>
   <p><b>Изменено:</b> '.date('d/m/Y (нед. W), H:i:s', filemtime($path)).'</p>
+  <p><b><a href="https://www.php.net/manual/ru/function.fileatime.php#refsect1-function.fileatime-notes">Последний доступ</a>:</b> '.date('d/m/Y (нед. W), H:i:s', fileatime($path)).'</p>
   <p><b>MIME-тип:</b> <code>'.$mime.'</code></p>
   <p><b>Размер:</b> '.convert_bytes(filesize($path)).'</p>
+  <p><b>Права доступа:</b> '.substr(sprintf('%o', fileperms($path)), -4).' ('.fileperms($path).')</p>
  </body>
 </html>';
 

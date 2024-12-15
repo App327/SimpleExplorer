@@ -32,7 +32,7 @@ echo '<!DOCTYPE html>
 <html lang="ru" dir="ltr">
  <head>
   <meta charset="utf-8" />
-  <title>Выбор папки — Распаковка ZIP/RAR-архива | SimpleExplorer v1.2</title>
+  <title>Редактирование файла | SimpleExplorer v1.2</title>
   <meta name="viewport" content="width=device-width,intitial-scale=1.0" />
   <style type="text/css">
 body {
@@ -55,18 +55,32 @@ a:hover {
   <h2 style="color: navy; font-weight: 400;">SimpleExplorer <span style="color: dodgerblue">v1.2</span></h2>
   <p>[<a href="https://github.com/App327/SimpleExplorer">GitHub</a> • <a href="https://github.com/App327/SimpleExplorer/issues/new?title=Сообщение+об+ошибке+%5Bv1.2%5D">Сообщить об ошибке</a>]</p>
   <hr noshade color="silver" />
-  <p><a href="/zip.php?p='.urlencode($path).'">‹ Назад</a></p>
+  <p><a href="/file.php?f='.urlencode($path).'">‹ Назад</a></p>
   <p>'.$path.'</p>
-  <h3>Выбор папки | Распаковка ZIP/RAR-архива</h3>
-  <form action="/unzip.php">
-   <p>Введите в поле ниже путь к папке для распаковки.</p>
-   <input type="hidden" name="f" value="'.$path.'" />
-   <input type="text" name="ep" placeholder="Папка для распаковки" title="Папка для распаковки" value="'.dirname($path).'" required style="width: calc(95% - 20px); padding: 10px;" />
-   <br /><br />
-   <input type="submit" value="Распаковать" onclick="document.getElementById(\'unpack-notify\').style.display = \'block\'" style="padding: 10px;" />
-  </form>
-  <p id="unpack-notify" style="display: none;">Распаковка запущена, это может занять некоторое время.</p>
+  <h3>Редактирование файла</h3>
+';
 
+$mime = mime_content_type($path);
+
+if ($mime == 'text/plain') {
+ echo '  <form action="/file_edit_save.php">
+   <input type="hidden" name="f" value="'.$path.'" />
+   <textarea name="cnt" style="resize: none; width: calc(95% - 20px); height: 200px; padding: 10px; background: rgb(240, 240, 240); border: none;" placeholder="Введите содержимое файла">
+';
+ $file_cnt = '';
+ $fgc = file_get_contents($path);
+ $file_cnt = str_replace('<', '&lt;', $fgc);
+ $file_cnt = str_replace('>', '&gt;', $file_cnt);
+ echo $file_cnt;
+ echo '</textarea>
+   <input type="submit" value="Сохранить" style="padding: 10px;" />
+  </form>';
+} else {
+ echo '  <p>Изменение файлов пока поддерживается только для файлов формата TXT.</p>
+';
+}
+
+echo '
  </body>
 </html>';
 

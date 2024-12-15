@@ -32,7 +32,7 @@ echo '<!DOCTYPE html>
 <html lang="ru" dir="ltr">
  <head>
   <meta charset="utf-8" />
-  <title>Создание папки | SimpleExplorer v1.1</title>
+  <title>Создание папки | SimpleExplorer v1.2</title>
   <meta name="viewport" content="width=device-width,intitial-scale=1.0" />
   <style type="text/css">
 body {
@@ -52,8 +52,8 @@ a:hover {
   </style>
  </head>
  <body>
-  <h2 style="color: navy; font-weight: 400;">SimpleExplorer <span style="color: dodgerblue">v1.1</span></h2>
-  <p>[<a href="https://github.com/App327/SimpleExplorer">GitHub</a> • <a href="https://github.com/App327/SimpleExplorer/issues/new?title=Сообщение+об+ошибке+%5Bv1.1%5D">Сообщить об ошибке</a>]</p>
+  <h2 style="color: navy; font-weight: 400;">SimpleExplorer <span style="color: dodgerblue">v1.2</span></h2>
+  <p>[<a href="https://github.com/App327/SimpleExplorer">GitHub</a> • <a href="https://github.com/App327/SimpleExplorer/issues/new?title=Сообщение+об+ошибке+%5Bv1.2%5D">Сообщить об ошибке</a>]</p>
   <hr noshade color="silver" />
   <p><a href="/?path='.urlencode($path).'">‹ Назад</a></p>
   <p>'.$path.'</p>
