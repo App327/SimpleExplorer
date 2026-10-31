@@ -1,9 +1,11 @@
 <?php
 
+header('HTTP/1.1 303 See Other');
+
 if (isset($_GET["p"])) {
- if ($_GET["p"] != '') {
+ if ($_GET["p"] !== '') {
   if (isset($_GET["fn"])) {
-   if ($_GET["fn"] != '') {
+   if ($_GET["fn"] !== '') {
     $md = mkdir($_GET["p"].'/'.$_GET["fn"]);
     if (!$md) {
      header('Location: /?path='.$_GET["p"].'&notif=Ошибка+создания+папки:+не+удалось+создать+папку.');

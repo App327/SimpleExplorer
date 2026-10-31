@@ -19,9 +19,9 @@ function convert_bytes($size) { // https://snipp.ru/php/converting-bytes
 
 $path = '';
 
-if (isset($_GET["f"])) {
- if ($_GET["f"] != '') {
-  $path = $_GET["f"];
+if (isset($_POST["f"])) {
+ if ($_POST["f"] !== '') {
+  $path = $_POST["f"];
  } else {
   $path = __DIR__.'/index.php';
  }
@@ -33,7 +33,7 @@ echo '<!DOCTYPE html>
 <html lang="ru" dir="ltr">
  <head>
   <meta charset="utf-8" />
-  <title>Сохранение — Редактирование файла | SimpleExplorer v1.2</title>
+  <title>Сохранение — Редактирование файла | SimpleExplorer v1.3</title>
   <meta name="viewport" content="width=device-width,intitial-scale=1.0" />
   <style type="text/css">
 body {
@@ -53,8 +53,8 @@ a:hover {
   </style>
  </head>
  <body>
-  <h2 style="color: navy; font-weight: 400;">SimpleExplorer <span style="color: dodgerblue">v1.2</span></h2>
-  <p>[<a href="https://github.com/App327/SimpleExplorer">GitHub</a> • <a href="https://github.com/App327/SimpleExplorer/issues/new?title=Сообщение+об+ошибке+%5Bv1.2%5D">Сообщить об ошибке</a>]</p>
+  <h2 style="color: navy; font-weight: 400;">SimpleExplorer <span style="color: dodgerblue">v1.3</span></h2>
+  <p>[<a href="https://github.com/App327/SimpleExplorer">GitHub</a> • <a href="https://github.com/App327/SimpleExplorer/issues/new?title=Сообщение+об+ошибке+%5Bv1.3%5D">Сообщить об ошибке</a>]</p>
   <hr noshade color="silver" />
   <p><a href="/file.php?f='.urlencode($path).'">‹ Назад</a></p>
   <p>'.$path.'</p>
@@ -63,11 +63,17 @@ a:hover {
 
 $mime = mime_content_type($path);
 
-if ($mime == 'text/plain') {
- if (isset($_GET["cnt"])) {
+$ext0 = pathinfo($path)['extension'];
+if (!$ext0) {
+ $ext0 = '';
+}
+$ext = strtolower($ext0);
+
+if ($ext === 'txt') {
+ if (isset($_POST["cnt"])) {
   $old = file_get_contents($path);
-  $new = $_GET["cnt"];
-  if ($old == $new) {
+  $new = $_POST["cnt"];
+  if ($old === $new) {
    echo '  <p>В файле нет изменений для сохранения.</p>
 ';
   } else {
@@ -89,7 +95,7 @@ if ($mime == 'text/plain') {
 ';
  }
 } else {
- echo '  <p>Изменение файлов пока поддерживается только для файлов формата TXT.</p>
+ echo '  <p>Изменение содержимого файлов пока поддерживается только для файлов формата TXT.</p>
 ';
 }
 

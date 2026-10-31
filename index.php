@@ -20,7 +20,7 @@ function convert_bytes($size) { // https://snipp.ru/php/converting-bytes
 $path = '';
 
 if (isset($_GET["path"])) {
- if ($_GET["path"] != '') {
+ if ($_GET["path"] !== '') {
   $path = $_GET["path"];
  } else {
   $path = __DIR__;
@@ -30,7 +30,7 @@ if (isset($_GET["path"])) {
 }
 
 if (isset($_GET["notif"])) {
- if ($_GET["notif"] != '') {
+ if ($_GET["notif"] !== '') {
   $notif = '<div class="notif"><p class="icon">ⓘ</p><p class="text">'.$_GET["notif"].'</p></div>';
  } else {
   $notif = '';
@@ -43,7 +43,7 @@ echo '<!DOCTYPE html>
 <html lang="ru" dir="ltr">
  <head>
   <meta charset="utf-8" />
-  <title>SimpleExplorer v1.2</title>
+  <title>SimpleExplorer v1.3</title>
   <meta name="viewport" content="width=device-width,intitial-scale=1.0" />
   <style type="text/css">
 body {
@@ -107,6 +107,11 @@ a:hover {
  border: 1.5px solid royalblue;
 }
 
+.path-submit:active, .path-top:active {
+ border: 1.5px solid darkblue;
+ background: rgb(230, 230, 240);
+}
+
 .path-submit:focus, .path-top:focus {
  outline: 2px solid skyblue;
 }
@@ -134,22 +139,27 @@ a:hover {
  align-items: center;
  width: calc(100% - 20px);
  background: rgb(230, 230, 255);
- padding: 0 10px 0 10px;
+ padding: 5px 10px;
  border-radius: 10px;
  overflow: auto;
 }
 .notif .icon {
  color: royalblue;
+ font-size: 1.4rem;
+ margin: 0;
+ margin-right: 5px;
+ flex-shrink: 0;
 }
 .notif .text {
- margin-left: 10px;
+ margin: 0;
+ margin-left: 5px;
 }
   </style>
  </head>
  <body>
 '.$notif.'
-  <h2 style="color: navy; font-weight: 400;">SimpleExplorer <span style="color: dodgerblue">v1.2</span></h2>
-  <p>[<a href="https://github.com/App327/SimpleExplorer">GitHub</a> • <a href="https://github.com/App327/SimpleExplorer/issues/new?title=Сообщение+об+ошибке+%5Bv1.2%5D">Сообщить об ошибке</a>]</p>
+  <h2 style="color: navy; font-weight: 400;">SimpleExplorer <span style="color: dodgerblue">v1.3</span></h2>
+  <p>[<a href="https://github.com/App327/SimpleExplorer">GitHub</a> • <a href="https://github.com/App327/SimpleExplorer/issues/new?title=Сообщение+об+ошибке+%5Bv1.3%5D">Сообщить об ошибке</a>]</p>
   <hr noshade color="silver" />
   <div style="width: 100%; display: flex; align-items: center;">
    <button onclick="window.location.href = \'/?path='.urlencode(dirname($path)).'\'" class="path-top">↑</button>
@@ -159,21 +169,28 @@ a:hover {
    </form>
   </div>
   <p class="f-info">[ ⓘ ]</p>
-  <div style="border: 2px solid orange;" class="f-info-i">
+  <div style="border: 2px solid orange; padding: 5px; width: calc(100% - 10px);" class="f-info-i">
    <p><b>[D]</b> — папка</p>
    <p><b>[F]</b> — файл</p>
    <p><b>[U]</b> — тип неизвестен</p>
   </div>
   <p><b>Занято:</b> ' . convert_bytes(disk_total_space($path) - disk_free_space($path)) . ' / ' . convert_bytes(disk_total_space($path)) . ' (<b>свободно:</b> ' . convert_bytes(disk_free_space($path)) . ')</p>
   <br />
-  <p>[<a href="/newfolder.php?p='.$path.'">+ Новая папка</a>]</p>
+  <p>[<a href="/newfolder.php?p='.$path.'"><b>+</b> Новая папка</a>]</p>
+
+  <div style="width: 100%; overflow-x: auto;">
 ';
 
 $sd = scandir($path);
 
-if (!$sd) {
- echo '<p>Папка пуста или произошла ошибка.</p>';
- echo '
+if ($sd === false) {
+ echo '<p style="color: grey; text-align: center;">Не удалось прочитать содержимое папки.</p>
+ </body>
+</html>';
+ exit();
+}
+if (count($sd) === 0) {
+ echo '<p style="color: grey; text-align: center;">Папка пуста.</p>
  </body>
 </html>';
  exit();
@@ -194,7 +211,7 @@ for ($i = 0; $i < count($sd); $i++) {
  echo $output;
 }
 
-echo '
+echo '  </div>
  </body>
 </html>';
 

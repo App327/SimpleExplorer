@@ -20,7 +20,7 @@ function convert_bytes($size) { // https://snipp.ru/php/converting-bytes
 $path = '';
 
 if (isset($_GET["f"])) {
- if ($_GET["f"] != '') {
+ if ($_GET["f"] !== '') {
   $path = $_GET["f"];
  } else {
   $path = __DIR__.'/index.php';
@@ -32,7 +32,7 @@ echo '<!DOCTYPE html>
 <html lang="ru" dir="ltr">
  <head>
   <meta charset="utf-8" />
-  <title>Редактирование файла | SimpleExplorer v1.2</title>
+  <title>Редактирование файла | SimpleExplorer v1.3</title>
   <meta name="viewport" content="width=device-width,intitial-scale=1.0" />
   <style type="text/css">
 body {
@@ -52,8 +52,8 @@ a:hover {
   </style>
  </head>
  <body>
-  <h2 style="color: navy; font-weight: 400;">SimpleExplorer <span style="color: dodgerblue">v1.2</span></h2>
-  <p>[<a href="https://github.com/App327/SimpleExplorer">GitHub</a> • <a href="https://github.com/App327/SimpleExplorer/issues/new?title=Сообщение+об+ошибке+%5Bv1.2%5D">Сообщить об ошибке</a>]</p>
+  <h2 style="color: navy; font-weight: 400;">SimpleExplorer <span style="color: dodgerblue">v1.3</span></h2>
+  <p>[<a href="https://github.com/App327/SimpleExplorer">GitHub</a> • <a href="https://github.com/App327/SimpleExplorer/issues/new?title=Сообщение+об+ошибке+%5Bv1.3%5D">Сообщить об ошибке</a>]</p>
   <hr noshade color="silver" />
   <p><a href="/file.php?f='.urlencode($path).'">‹ Назад</a></p>
   <p>'.$path.'</p>
@@ -62,8 +62,14 @@ a:hover {
 
 $mime = mime_content_type($path);
 
-if ($mime == 'text/plain') {
- echo '  <form action="/file_edit_save.php">
+$ext0 = pathinfo($path)['extension'];
+if (!$ext0) {
+ $ext0 = '';
+}
+$ext = strtolower($ext0);
+
+if ($ext === 'txt') {
+ echo '  <form action="/file_edit_save.php" method="post">
    <input type="hidden" name="f" value="'.$path.'" />
    <textarea name="cnt" style="resize: none; width: calc(95% - 20px); height: 200px; padding: 10px; background: rgb(240, 240, 240); border: none;" placeholder="Введите содержимое файла">
 ';
@@ -76,7 +82,7 @@ if ($mime == 'text/plain') {
    <input type="submit" value="Сохранить" style="padding: 10px;" />
   </form>';
 } else {
- echo '  <p>Изменение файлов пока поддерживается только для файлов формата TXT.</p>
+ echo '  <p>Изменение содержимого файлов пока поддерживается только для файлов формата TXT.</p>
 ';
 }
 
