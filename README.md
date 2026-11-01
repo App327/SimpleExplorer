@@ -82,53 +82,66 @@ SimpleExplorer развивается, время от времени выход
 
 ## 🗄️ Архивы
 >[!WARNING]
->Для работы с ZIP/JAR-архивами требуется PHP-расширение [ZipArchive](https://www.php.net/manual/ru/book.zip.php).
+>Для работы с ZIP/JAR-архивами требуется PHP-расширение [Zip](https://www.php.net/manual/ru/book.zip.php).
 
 >[!WARNING]
->Для работы с RAR-архивами требуется PHP-расширение [RarArchive](https://www.php.net/manual/ru/book.rar.php).
+>Для работы с RAR-архивами требуется PHP-расширение [Rar](https://www.php.net/manual/ru/book.rar.php).
 
-`application/zip` | `application/java-archive` | `application/vnd.rar` | `application/x-rar` | `application/rar`
+Содержимое архива отображается в виде списка на отдельной странице ([zip.php](zip.php)). Архивы можно распаковывать.
+* `.zip`
+* `.jar`
+* `.rar`
 
-Содержимое архива отображается в виде списка на отдельной странице ([zip.php](zip.php)). Поддерживается распаковка.
-* ZIP
-* JAR
-* RAR (частичная поддержка)
+>[!NOTE]
+>Просмотр содержимого и распаковка RAR-архивов *вроде* поддерживаются, но точно их работа пока не проверялась.
 
 ## 🔠 Шрифты
-Используя CSS-свойство `@font-face`, SimpleExplorer загружает шрифт и называет его «Test Font». Далее этот «Test Font» используется в абзацах в месте, где просматривается содержимое файла. В этих абзацах написано 2 [панграммы](https://ru.wikipedia.org/wiki/Панграмма): на русском («Съешь ещё этих мягких французских булок, да выпей же чаю») и на английском («The quick brown fox jumps over the lazy dog»); под ними находятся английский и русский алфавит, написаный большими (прописными) и маленькими (строчными) буквами: ABC/abc, АБВ/абв; затем идут цифры от 1 до 9 с 0 в конце: «1234567890»; в конце располагаются специальные символы (@, $, ?, _ и т. д.). Ниже расположено поле ввода, позволяющее тестировать другие символы, например, если шрифт содержит эмодзи, которые не отображаются в предпросмотре выше.
+Для отображения шрифта SimpleExplorer загружает шрифт (используя CSS-правило `@font-face`) и задаёт ему в CSS название «Test Font». Далее этот «Test Font» используется в качестве шрифта в абзацах в области просмотра содержимого файла. В этих абзацах написано 2 [панграммы](https://ru.wikipedia.org/wiki/Панграмма): на русском («Съешь ещё этих мягких французских булок, да выпей же чаю») и на английском («The quick brown fox jumps over the lazy dog»). Под ними находятся английский и русский алфавит, написанный большими (прописными) и маленькими (строчными) буквами: `ABC/abc`, `АБВ/абв`; затем идут цифры от 1 до 9 с 0 в конце: «1234567890»; в конце располагаются специальные символы (@, $, ?, _ и т. д.). Ниже расположено поле ввода, позволяющее протестировать отображение других символов, например, эмодзи.
 
-`font/sfnt` | `font/truetype` | `application/vnd.ms-fontobject` | `font/woff` | `font/opentype` | `application/font-woff` | `font/woff2` | `font/collection`
-
-* TTF
-* EOT
-* OTF
-* WOFF
-* WOFF2
+* `.ttf`
+* `.ttc`
+* `.eot`
+* `.otf`
+* `.woff`
+* `.woff2`
+* `.otc`
 
 ## 📃 Текстовые файлы
-Отображается как неформатированный текст (в HTML-теге `<pre>`) на светло-сером фоне.
+Отображаются как неформатированный текст (в HTML-теге `<pre>`) на светло-сером фоне.
 
-`text/plain` | `application/xml` | `text/xml` | `text/x-php` | `text/php` | `application/x-httpd-php` | `text/x-msdos-batch` | `text/msdos-batch` | `application/bat` | `application/x-bat` | `text/css` | `text/javascript` | `application/json` | `application/x-empty`
-
-* TXT
-* XML
-* PHP
-* BAT
-* CMD
-* CSS
-* JS [JavaScript]
-* JSON
+* `.txt`
+* `.xml`
+* `.bat`
+* `.cmd`
+* `.css`
+* `.js` [JavaScript]
+* `.json`
+* `.php`
+* `.java`
+* `.cpp`
+* `.cs`
+* `.py`
 * <без расширения>
 
 ## 📄 Веб-контент
-Отображаются в iframe (HTML-тег `<iframe>`).
+Отображается в iframe (HTML-тег `<iframe>`).
 
-`text/html` | `image/svg+xml`
+* `.html`
+* `.htm`
+* `.xhtml`
+* `.xhtm`
+* `.xht`
+* `.svg`
+* `.mml`
 
-* HTML
-* SVG
+## 📊 Таблицы
+Отображаются в виде HTML-таблиц.
+
+* `.csv`
+* `.tsv`
 
 ## ↔️ Другое
+* `.ini`
 * Папки
 
 
